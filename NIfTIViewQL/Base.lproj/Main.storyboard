@@ -720,7 +720,7 @@
                                     <action selector="openNIfTI:" target="XfG-lQ-9wD" id="TvW-XK-fBG"/>
                                 </connections>
                             </button>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNT-Pt-ZEP">
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNT-Pt-ZEP" customClass="NiftiTripleSliceView">
                                 <rect key="frame" x="0.0" y="0.0" width="660" height="411"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                             </customView>
@@ -728,6 +728,7 @@
                     </view>
                     <connections>
                         <outlet property="openButton" destination="qx1-Ba-JM8" id="hUX-BZ-3ak"/>
+                        <outlet property="tripleSliceView" destination="mNT-Pt-ZEP" id="3gi-ms-lzH"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

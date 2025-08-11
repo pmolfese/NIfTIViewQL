@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 #import "NiftiImage.h"
+#import "NiftiTripleSliceView.h"
+#import "NiftiSliceView.h"
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -31,6 +33,8 @@
                 NSString *dType = [[myImage datatype] stringValue];
                 NSLog(@"DataType %@", dType);
                 NSLog(@"Dimensions: %@ %@ %@", [myImage nx], [myImage ny], [myImage nz]);
+                
+                [self.tripleSliceView setNiftiImage:myImage];
                 
             }
             else {

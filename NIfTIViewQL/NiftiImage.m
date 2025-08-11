@@ -67,7 +67,6 @@
     }
 }
 
-// Only DT_FLOAT32 implemented for demonstration.
 - (NSArray<NSArray<NSNumber *> *> *)sliceAtIndex:(NSInteger)index
                                      orientation:(NiftiSliceOrientation)orientation
 {
@@ -80,48 +79,130 @@
 
     NSMutableArray *slice = [NSMutableArray array];
 
-    if (datatype == DT_FLOAT32) {
-        float *data = (float *)_nim->data;
-        switch (orientation) {
-            case NiftiSliceOrientationAxial: // XY plane at Z = index
-                if (index < 0 || index >= nz) return nil;
-                for (int y = 0; y < ny; ++y) {
-                    NSMutableArray *row = [NSMutableArray array];
-                    for (int x = 0; x < nx; ++x) {
-                        int idx = x + y * nx + index * nx * ny;
-                        [row addObject:@(data[idx])];
-                    }
-                    [slice addObject:row];
-                }
-                break;
-            case NiftiSliceOrientationCoronal: // XZ plane at Y = index
-                if (index < 0 || index >= ny) return nil;
-                for (int z = 0; z < nz; ++z) {
-                    NSMutableArray *row = [NSMutableArray array];
-                    for (int x = 0; x < nx; ++x) {
-                        int idx = x + index * nx + z * nx * ny;
-                        [row addObject:@(data[idx])];
-                    }
-                    [slice addObject:row];
-                }
-                break;
-            case NiftiSliceOrientationSagittal: // YZ plane at X = index
-                if (index < 0 || index >= nx) return nil;
-                for (int z = 0; z < nz; ++z) {
-                    NSMutableArray *row = [NSMutableArray array];
+    // Helper macro for getting value as NSNumber for each type
+    #define GET_VAL(idx, TYPE) @(((TYPE *)_nim->data)[idx])
+
+    switch (datatype) {
+        case DT_FLOAT32: {
+            switch (orientation) {
+                case NiftiSliceOrientationAxial: // XY plane at Z = index
+                    if (index < 0 || index >= nz) return nil;
                     for (int y = 0; y < ny; ++y) {
-                        int idx = index + y * nx + z * nx * ny;
-                        [row addObject:@(data[idx])];
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int x = 0; x < nx; ++x) {
+                            int idx = x + y * nx + index * nx * ny;
+                            [row addObject:GET_VAL(idx, float)];
+                        }
+                        [slice addObject:row];
                     }
-                    [slice addObject:row];
-                }
-                break;
+                    break;
+                case NiftiSliceOrientationCoronal: // XZ plane at Y = index
+                    if (index < 0 || index >= ny) return nil;
+                    for (int z = 0; z < nz; ++z) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int x = 0; x < nx; ++x) {
+                            int idx = x + index * nx + z * nx * ny;
+                            [row addObject:GET_VAL(idx, float)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+                case NiftiSliceOrientationSagittal: // YZ plane at X = index
+                    if (index < 0 || index >= nx) return nil;
+                    for (int z = 0; z < nz; ++z) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int y = 0; y < ny; ++y) {
+                            int idx = index + y * nx + z * nx * ny;
+                            [row addObject:GET_VAL(idx, float)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+            }
+            break;
         }
-    } else {
-        NSLog(@"sliceAtIndex:orientation: currently only supports DT_FLOAT32. Got %d", datatype);
-        return nil;
+        case DT_UINT8: {
+            switch (orientation) {
+                case NiftiSliceOrientationAxial:
+                    if (index < 0 || index >= nz) return nil;
+                    for (int y = 0; y < ny; ++y) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int x = 0; x < nx; ++x) {
+                            int idx = x + y * nx + index * nx * ny;
+                            [row addObject:GET_VAL(idx, uint8_t)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+                case NiftiSliceOrientationCoronal:
+                    if (index < 0 || index >= ny) return nil;
+                    for (int z = 0; z < nz; ++z) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int x = 0; x < nx; ++x) {
+                            int idx = x + index * nx + z * nx * ny;
+                            [row addObject:GET_VAL(idx, uint8_t)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+                case NiftiSliceOrientationSagittal:
+                    if (index < 0 || index >= nx) return nil;
+                    for (int z = 0; z < nz; ++z) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int y = 0; y < ny; ++y) {
+                            int idx = index + y * nx + z * nx * ny;
+                            [row addObject:GET_VAL(idx, uint8_t)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+            }
+            break;
+        }
+        case DT_INT16: {
+            switch (orientation) {
+                case NiftiSliceOrientationAxial:
+                    if (index < 0 || index >= nz) return nil;
+                    for (int y = 0; y < ny; ++y) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int x = 0; x < nx; ++x) {
+                            int idx = x + y * nx + index * nx * ny;
+                            [row addObject:GET_VAL(idx, int16_t)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+                case NiftiSliceOrientationCoronal:
+                    if (index < 0 || index >= ny) return nil;
+                    for (int z = 0; z < nz; ++z) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int x = 0; x < nx; ++x) {
+                            int idx = x + index * nx + z * nx * ny;
+                            [row addObject:GET_VAL(idx, int16_t)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+                case NiftiSliceOrientationSagittal:
+                    if (index < 0 || index >= nx) return nil;
+                    for (int z = 0; z < nz; ++z) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int y = 0; y < ny; ++y) {
+                            int idx = index + y * nx + z * nx * ny;
+                            [row addObject:GET_VAL(idx, int16_t)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+            }
+            break;
+        }
+        default:
+            NSLog(@"sliceAtIndex:orientation: unsupported datatype %d", datatype);
+            return nil;
     }
     return slice;
+    #undef GET_VAL
 }
 
 @end
