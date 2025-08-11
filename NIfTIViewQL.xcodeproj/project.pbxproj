@@ -1,0 +1,560 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		77683E252E4A3D15002FA11D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77683E072E4A3D13002FA11D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 77683E0E2E4A3D13002FA11D;
+			remoteInfo = NIfTIViewQL;
+		};
+		77683E2F2E4A3D15002FA11D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77683E072E4A3D13002FA11D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 77683E0E2E4A3D13002FA11D;
+			remoteInfo = NIfTIViewQL;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		77683E0F2E4A3D13002FA11D /* NIfTIViewQL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NIfTIViewQL.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		77683E242E4A3D15002FA11D /* NIfTIViewQLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NIfTIViewQLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		77683E2E2E4A3D15002FA11D /* NIfTIViewQLUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NIfTIViewQLUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		77683E112E4A3D13002FA11D /* NIfTIViewQL */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NIfTIViewQL;
+			sourceTree = "<group>";
+		};
+		77683E272E4A3D15002FA11D /* NIfTIViewQLTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NIfTIViewQLTests;
+			sourceTree = "<group>";
+		};
+		77683E312E4A3D15002FA11D /* NIfTIViewQLUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NIfTIViewQLUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		77683E0C2E4A3D13002FA11D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77683E212E4A3D15002FA11D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77683E2B2E4A3D15002FA11D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		77683E062E4A3D13002FA11D = {
+			isa = PBXGroup;
+			children = (
+				77683E112E4A3D13002FA11D /* NIfTIViewQL */,
+				77683E272E4A3D15002FA11D /* NIfTIViewQLTests */,
+				77683E312E4A3D15002FA11D /* NIfTIViewQLUITests */,
+				77683E102E4A3D13002FA11D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		77683E102E4A3D13002FA11D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				77683E0F2E4A3D13002FA11D /* NIfTIViewQL.app */,
+				77683E242E4A3D15002FA11D /* NIfTIViewQLTests.xctest */,
+				77683E2E2E4A3D15002FA11D /* NIfTIViewQLUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		77683E0E2E4A3D13002FA11D /* NIfTIViewQL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77683E382E4A3D15002FA11D /* Build configuration list for PBXNativeTarget "NIfTIViewQL" */;
+			buildPhases = (
+				77683E0B2E4A3D13002FA11D /* Sources */,
+				77683E0C2E4A3D13002FA11D /* Frameworks */,
+				77683E0D2E4A3D13002FA11D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				77683E112E4A3D13002FA11D /* NIfTIViewQL */,
+			);
+			name = NIfTIViewQL;
+			packageProductDependencies = (
+			);
+			productName = NIfTIViewQL;
+			productReference = 77683E0F2E4A3D13002FA11D /* NIfTIViewQL.app */;
+			productType = "com.apple.product-type.application";
+		};
+		77683E232E4A3D15002FA11D /* NIfTIViewQLTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77683E3B2E4A3D15002FA11D /* Build configuration list for PBXNativeTarget "NIfTIViewQLTests" */;
+			buildPhases = (
+				77683E202E4A3D15002FA11D /* Sources */,
+				77683E212E4A3D15002FA11D /* Frameworks */,
+				77683E222E4A3D15002FA11D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				77683E262E4A3D15002FA11D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				77683E272E4A3D15002FA11D /* NIfTIViewQLTests */,
+			);
+			name = NIfTIViewQLTests;
+			packageProductDependencies = (
+			);
+			productName = NIfTIViewQLTests;
+			productReference = 77683E242E4A3D15002FA11D /* NIfTIViewQLTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		77683E2D2E4A3D15002FA11D /* NIfTIViewQLUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77683E3E2E4A3D15002FA11D /* Build configuration list for PBXNativeTarget "NIfTIViewQLUITests" */;
+			buildPhases = (
+				77683E2A2E4A3D15002FA11D /* Sources */,
+				77683E2B2E4A3D15002FA11D /* Frameworks */,
+				77683E2C2E4A3D15002FA11D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				77683E302E4A3D15002FA11D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				77683E312E4A3D15002FA11D /* NIfTIViewQLUITests */,
+			);
+			name = NIfTIViewQLUITests;
+			packageProductDependencies = (
+			);
+			productName = NIfTIViewQLUITests;
+			productReference = 77683E2E2E4A3D15002FA11D /* NIfTIViewQLUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		77683E072E4A3D13002FA11D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					77683E0E2E4A3D13002FA11D = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					77683E232E4A3D15002FA11D = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 77683E0E2E4A3D13002FA11D;
+					};
+					77683E2D2E4A3D15002FA11D = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 77683E0E2E4A3D13002FA11D;
+					};
+				};
+			};
+			buildConfigurationList = 77683E0A2E4A3D13002FA11D /* Build configuration list for PBXProject "NIfTIViewQL" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 77683E062E4A3D13002FA11D;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 77683E102E4A3D13002FA11D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				77683E0E2E4A3D13002FA11D /* NIfTIViewQL */,
+				77683E232E4A3D15002FA11D /* NIfTIViewQLTests */,
+				77683E2D2E4A3D15002FA11D /* NIfTIViewQLUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		77683E0D2E4A3D13002FA11D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77683E222E4A3D15002FA11D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77683E2C2E4A3D15002FA11D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		77683E0B2E4A3D13002FA11D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77683E202E4A3D15002FA11D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77683E2A2E4A3D15002FA11D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		77683E262E4A3D15002FA11D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 77683E0E2E4A3D13002FA11D /* NIfTIViewQL */;
+			targetProxy = 77683E252E4A3D15002FA11D /* PBXContainerItemProxy */;
+		};
+		77683E302E4A3D15002FA11D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 77683E0E2E4A3D13002FA11D /* NIfTIViewQL */;
+			targetProxy = 77683E2F2E4A3D15002FA11D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		77683E362E4A3D15002FA11D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = NIfTIViewQL/nifti_clib;
+				LIBRARY_SEARCH_PATHS = (
+					"NIfTIViewQL/nifti_clib/**",
+					/opt/homebrew/opt/zlib/lib,
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		77683E372E4A3D15002FA11D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = NIfTIViewQL/nifti_clib;
+				LIBRARY_SEARCH_PATHS = (
+					"NIfTIViewQL/nifti_clib/**",
+					/opt/homebrew/opt/zlib/lib,
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		77683E392E4A3D15002FA11D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NIfTIViewQL/NIfTIViewQL.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "NIfTIViewQL/nifti_clib/**";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NIfTIViewQL/nifti_clib",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-DHAVE_ZLIB";
+				PRODUCT_BUNDLE_IDENTIFIER = gov.nih.nimh.cmn.NIfTIViewQL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		77683E3A2E4A3D15002FA11D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NIfTIViewQL/NIfTIViewQL.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "NIfTIViewQL/nifti_clib/**";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NIfTIViewQL/nifti_clib",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-DHAVE_ZLIB";
+				PRODUCT_BUNDLE_IDENTIFIER = gov.nih.nimh.cmn.NIfTIViewQL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		77683E3C2E4A3D15002FA11D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.nih.nimh.cmn.NIfTIViewQLTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NIfTIViewQL.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NIfTIViewQL";
+			};
+			name = Debug;
+		};
+		77683E3D2E4A3D15002FA11D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.nih.nimh.cmn.NIfTIViewQLTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NIfTIViewQL.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NIfTIViewQL";
+			};
+			name = Release;
+		};
+		77683E3F2E4A3D15002FA11D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.nih.nimh.cmn.NIfTIViewQLUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = NIfTIViewQL;
+			};
+			name = Debug;
+		};
+		77683E402E4A3D15002FA11D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.nih.nimh.cmn.NIfTIViewQLUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = NIfTIViewQL;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		77683E0A2E4A3D13002FA11D /* Build configuration list for PBXProject "NIfTIViewQL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77683E362E4A3D15002FA11D /* Debug */,
+				77683E372E4A3D15002FA11D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77683E382E4A3D15002FA11D /* Build configuration list for PBXNativeTarget "NIfTIViewQL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77683E392E4A3D15002FA11D /* Debug */,
+				77683E3A2E4A3D15002FA11D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77683E3B2E4A3D15002FA11D /* Build configuration list for PBXNativeTarget "NIfTIViewQLTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77683E3C2E4A3D15002FA11D /* Debug */,
+				77683E3D2E4A3D15002FA11D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77683E3E2E4A3D15002FA11D /* Build configuration list for PBXNativeTarget "NIfTIViewQLUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77683E3F2E4A3D15002FA11D /* Debug */,
+				77683E402E4A3D15002FA11D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 77683E072E4A3D13002FA11D /* Project object */;
+}
