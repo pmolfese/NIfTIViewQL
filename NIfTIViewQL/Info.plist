@@ -37,7 +37,7 @@
 		</dict>
 		<dict>
 			<key>UTTypeIdentifier</key>
-			<string>org.nifti.nii-gzip</string>
+			<string>gov.nih.nifti-1-gzip</string>
 			<key>UTTypeDescription</key>
 			<string>Compressed NIfTI Image</string>
 			<key>UTTypeConformsTo</key>
@@ -63,7 +63,7 @@
 			<string>NIfTI Image</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.nifti.nii</string>
+				<string>gov.nih.nifti-1</string>
 			</array>
 			<key>LSHandlerRank</key>
 			<string>Viewer</string>
@@ -73,7 +73,7 @@
 			<string>Compressed NIfTI Image</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.nifti.nii-gzip</string>
+				<string>gov.nih.nifti-1-gzip</string>
 			</array>
 			<key>LSHandlerRank</key>
 			<string>Viewer</string>

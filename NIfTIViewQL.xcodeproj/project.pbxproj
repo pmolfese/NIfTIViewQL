@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		772E26E42E4AD29100FEB027 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 772E26E32E4AD29100FEB027 /* Quartz.framework */; };
 		772E26F32E4AD29100FEB027 /* NIfTIQuickLook.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 772E26E12E4AD29100FEB027 /* NIfTIQuickLook.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		772E26FE2E4ADA1D00FEB027 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 772E26FD2E4ADA1D00FEB027 /* QuickLook.framework */; };
+		777256732E4B7A29009E5CC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777256722E4B7A29009E5CC7 /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +57,7 @@
 		77683E0F2E4A3D13002FA11D /* NIfTIViewQL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NIfTIViewQL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77683E242E4A3D15002FA11D /* NIfTIViewQLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NIfTIViewQLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77683E2E2E4A3D15002FA11D /* NIfTIViewQLUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NIfTIViewQLUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		777256722E4B7A29009E5CC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -88,11 +89,22 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		777256762E4B7B45009E5CC7 /* Exceptions for "NIfTIQuickLook" folder in "Compile Sources" phase from "NIfTIQuickLook" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 772E26DD2E4AD29100FEB027 /* Sources */;
+			membershipExceptions = (
+				PreviewProvider.h,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		772E26E52E4AD29100FEB027 /* NIfTIQuickLook */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				772E26F72E4AD29100FEB027 /* Exceptions for "NIfTIQuickLook" folder in "NIfTIQuickLook" target */,
+				777256762E4B7B45009E5CC7 /* Exceptions for "NIfTIQuickLook" folder in "Compile Sources" phase from "NIfTIQuickLook" target */,
 			);
 			path = NIfTIQuickLook;
 			sourceTree = "<group>";
@@ -123,8 +135,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				777256732E4B7A29009E5CC7 /* Cocoa.framework in Frameworks */,
 				772E26FE2E4ADA1D00FEB027 /* QuickLook.framework in Frameworks */,
-				772E26E42E4AD29100FEB027 /* Quartz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +167,7 @@
 		772E26E22E4AD29100FEB027 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				777256722E4B7A29009E5CC7 /* Cocoa.framework */,
 				772E26FD2E4ADA1D00FEB027 /* QuickLook.framework */,
 				772E26E32E4AD29100FEB027 /* Quartz.framework */,
 			);

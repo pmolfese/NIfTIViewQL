@@ -5,6 +5,10 @@
 
 @implementation PreviewProvider
 
++ (void)load {
+    NSLog(@"PreviewProvider loaded!");
+}
+
 - (void)providePreviewForFileRequest:(QLFilePreviewRequest *)request
                    completionHandler:(void (^)(QLPreviewReply * _Nullable reply, NSError * _Nullable error))handler
 {
@@ -14,6 +18,7 @@
             // QLFilePreviewRequest does NOT expose any size (no maximumSize/previewSize).
             // Use a fixed target size; Quick Look will scale the returned image as needed.
             NSSize targetSize = NSMakeSize(600, 200);
+            NSLog(@"Starting providePreview Function...");
 
             // Load and render
             NiftiImage *nifti = [[NiftiImage alloc] initWithFileAtPath:request.fileURL.path];
@@ -69,7 +74,14 @@
             }
 
             // Create the QLPreviewReply from the temporary file URL
+            //old
+            //QLPreviewReply *reply = [[QLPreviewReply alloc] initWithFileURL:tempFileURL];
+            
+            //new
+            // Better:
+            NSLog(@"temp file: %@", tempFileURL);
             QLPreviewReply *reply = [[QLPreviewReply alloc] initWithFileURL:tempFileURL];
+            handler(reply, nil);
             
             if (reply) {
                 handler(reply, nil);

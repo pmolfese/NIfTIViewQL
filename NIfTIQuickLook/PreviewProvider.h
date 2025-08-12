@@ -7,10 +7,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Quartz/Quartz.h>
-#import <QuickLook/QuickLook.h>
-#import <QuickLookUI/QuickLookUI.h>
+//#import <QuickLook/QuickLook.h>
 #import "NiftiImage.h"
 
-@interface PreviewProvider : QLPreviewProvider <QLPreviewingController>
+//@interface PreviewProvider : QLPreviewProvider <QLPreviewingController>
+@interface PreviewProvider : QLPreviewProvider
+
 
 @end

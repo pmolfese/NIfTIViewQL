@@ -69,12 +69,13 @@
 			<array>
 				<string>gov.nih.nifti-1</string>
 				<string>gov.nih.nifti-1-gzip</string>
+				<string>public.data</string>
 			</array>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.quicklook.preview</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>NiftiQLPreviewProvider</string>
+		<string>PreviewProvider</string>
 	</dict>
 </dict>
 </plist>
