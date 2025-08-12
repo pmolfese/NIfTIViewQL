@@ -20,5 +20,6 @@ typedef NS_ENUM(NSUInteger, NiftiSliceOrientation) {
 - (NSArray<NSArray<NSNumber *> *> *)sliceAtIndex:(NSInteger)index
                                      orientation:(NiftiSliceOrientation)orientation;
 - (NSString *)dataTypeDescription;
+- (NSImage * _Nullable)renderTripleSliceImageWithSize:(NSSize)size;
 
 @end

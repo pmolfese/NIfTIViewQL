@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.YourApp</string>
+	<key>CFBundleName</key>
+	<string>YourApp</string>
+	<key>CFBundleDisplayName</key>
+	<string>YourApp</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>11.0</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>gov.nih.nifti-1</string>
+			<key>UTTypeDescription</key>
+			<string>NIfTI Image</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>nii</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/octet-stream</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.nifti.nii-gzip</string>
+			<key>UTTypeDescription</key>
+			<string>Compressed NIfTI Image</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>gov.nih.nifti-1</string>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>nii.gz</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/gzip</string>
+			</dict>
+		</dict>
+	</array>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>NIfTI Image</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.nifti.nii</string>
+			</array>
+			<key>LSHandlerRank</key>
+			<string>Viewer</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Compressed NIfTI Image</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.nifti.nii-gzip</string>
+			</array>
+			<key>LSHandlerRank</key>
+			<string>Viewer</string>
+		</dict>
+	</array>
+</dict>
+</plist>
