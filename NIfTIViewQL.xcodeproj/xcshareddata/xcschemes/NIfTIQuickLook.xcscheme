@@ -16,9 +16,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "77A807DF2E4AA9280016887A"
-               BuildableName = "NIfTIViewQuickLook.appex"
-               BlueprintName = "NIfTIViewQuickLook"
+               BlueprintIdentifier = "772E26E02E4AD29100FEB027"
+               BuildableName = "NIfTIQuickLook.appex"
+               BlueprintName = "NIfTIQuickLook"
                ReferencedContainer = "container:NIfTIViewQL.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,30 +44,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "77683E232E4A3D15002FA11D"
-               BuildableName = "NIfTIViewQLTests.xctest"
-               BlueprintName = "NIfTIViewQLTests"
-               ReferencedContainer = "container:NIfTIViewQL.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "77683E2D2E4A3D15002FA11D"
-               BuildableName = "NIfTIViewQLUITests.xctest"
-               BlueprintName = "NIfTIViewQLUITests"
-               ReferencedContainer = "container:NIfTIViewQL.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"

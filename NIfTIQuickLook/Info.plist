@@ -17,7 +17,6 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 
-	<!-- If the main app can't export these, import them here as a workaround -->
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -46,7 +45,6 @@
 			<string>Compressed NIfTI Image</string>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>org.nifti.nii</string>
 				<string>public.data</string>
 			</array>
 			<key>UTTypeTagSpecification</key>
@@ -69,13 +67,16 @@
 			<array>
 				<string>gov.nih.nifti-1</string>
 				<string>gov.nih.nifti-1-gzip</string>
-				<string>public.data</string>
 			</array>
+			<key>QLPreviewWidth</key>
+			<integer>800</integer>
+			<key>QLPreviewHeight</key>
+			<integer>600</integer>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.quicklook.preview</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>PreviewProvider</string>
+		<string>PreviewViewController</string>
 	</dict>
 </dict>
 </plist>
