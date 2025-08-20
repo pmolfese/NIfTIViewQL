@@ -18,6 +18,8 @@
     self.view.layer.backgroundColor = [[NSColor windowBackgroundColor] CGColor];
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

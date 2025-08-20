@@ -35,7 +35,7 @@
 					<string>nii</string>
 				</array>
 				<key>public.mime-type</key>
-				<string>application/octet-stream</string>
+				<string>application/x-nifti</string>
 			</dict>
 		</dict>
 		<dict>
@@ -46,15 +46,17 @@
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>public.data</string>
+				<string>org.gnu.gnu-zip-archive</string>
 			</array>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
 					<string>nii.gz</string>
+					<string>gz</string>
 				</array>
 				<key>public.mime-type</key>
-				<string>application/gzip</string>
+				<string>application/x-nifti-gzip</string>
 			</dict>
 		</dict>
 	</array>
