@@ -300,6 +300,27 @@ static void NI_drawImageCentered(NSImage *img, NSRect rect) {
               hints:nil];
 }
 
+static void NI_drawImageTopAligned(NSImage *img, NSRect rect) {
+    if (!img) return;
+    NSSize isz = img.size;
+    if (isz.width <= 0 || isz.height <= 0) return;
+
+    CGFloat sx = rect.size.width / isz.width;
+    CGFloat sy = rect.size.height / isz.height;
+    CGFloat s = MIN(sx, sy);
+
+    NSSize target = NSMakeSize(isz.width * s, isz.height * s);
+    NSRect dst = NSMakeRect(NSMidX(rect) - target.width * 0.5,
+                            NSMaxY(rect) - target.height,
+                            target.width, target.height);
+    [img drawInRect:dst
+           fromRect:NSZeroRect
+          operation:NSCompositingOperationSourceOver
+           fraction:1.0
+     respectFlipped:YES
+              hints:nil];
+}
+
 static void NI_drawLabel(NSString *text, NSPoint p) {
     if (text.length == 0) return;
     NSDictionary *attrs = @{
@@ -345,13 +366,14 @@ static void NI_drawLabel(NSString *text, NSPoint p) {
         return nil;
     }
 
-    // Compose into a single canvas
+    // Compose into a four-quadrant canvas
     const CGFloat W = MAX(size.width, 10);
     const CGFloat H = MAX(size.height, 10);
-    const CGFloat pad = 8.0;
-    const CGFloat columns = 3.0;
-    const CGFloat cellW = (W - pad * (columns + 1)) / columns;
-    const CGFloat cellH = H - pad * 2.0;
+    const CGFloat pad = 1.0;
+    
+    // Calculate quadrant dimensions
+    const CGFloat quadrantW = (W - pad * 3) / 2; // 2 columns, 3 gaps (left, middle, right)
+    const CGFloat quadrantH = (H - pad * 3) / 2; // 2 rows, 3 gaps (top, middle, bottom)
 
     NSImage *canvas = [[NSImage alloc] initWithSize:NSMakeSize(W, H)];
     [canvas lockFocus];
@@ -360,20 +382,25 @@ static void NI_drawLabel(NSString *text, NSPoint p) {
     [[NSColor blackColor] setFill];
     NSRectFill(NSMakeRect(0, 0, W, H));
 
-    // Cells
-    NSRect axR = NSMakeRect(pad + 0 * (cellW + pad), pad, cellW, cellH);
-    NSRect coR = NSMakeRect(pad + 1 * (cellW + pad), pad, cellW, cellH);
-    NSRect sgR = NSMakeRect(pad + 2 * (cellW + pad), pad, cellW, cellH);
+    // Define quadrant rectangles (top-left, top-right, bottom-left, bottom-right)
+    NSRect topLeftRect     = NSMakeRect(pad, H - pad - quadrantH, quadrantW, quadrantH);           // Axial
+    NSRect topRightRect    = NSMakeRect(pad + quadrantW + pad, H - pad - quadrantH, quadrantW, quadrantH); // Coronal
+    NSRect bottomLeftRect  = NSMakeRect(pad, pad, quadrantW, quadrantH);                             // Sagittal
+    NSRect bottomRightRect = NSMakeRect(pad + quadrantW + pad, pad, quadrantW, quadrantH);           // Fourth quadrant (empty for now) quadrant (empty for now)
 
-    // Draw images
-    NI_drawImageCentered(axialImg, axR);
-    NI_drawImageCentered(coronalImg, coR);
-    NI_drawImageCentered(sagittalImg, sgR);
+    // Draw images in the first three quadrants
+    NI_drawImageTopAligned(axialImg, topLeftRect);
+    NI_drawImageTopAligned(coronalImg, topRightRect);
+    NI_drawImageTopAligned(sagittalImg, bottomLeftRect);
 
-    // Labels
-    //NI_drawLabel(@"Axial",    NSMakePoint(NSMinX(axR) + 6, NSMaxY(axR) - 18));
-    //NI_drawLabel(@"Coronal",  NSMakePoint(NSMinX(coR) + 6, NSMaxY(coR) - 18));
-    //NI_drawLabel(@"Sagittal", NSMakePoint(NSMinX(sgR) + 6, NSMaxY(sgR) - 18));
+    // Optional: Add a subtle border or background to the empty fourth quadrant
+    [[NSColor colorWithWhite:0.1 alpha:1.0] setFill];
+    NSRectFill(bottomRightRect);
+
+    // Add labels to each quadrant
+    //NI_drawLabel(@"Axial",    NSMakePoint(NSMinX(topLeftRect) + 6, NSMaxY(topLeftRect) - 18));
+    //NI_drawLabel(@"Coronal",  NSMakePoint(NSMinX(topRightRect) + 6, NSMaxY(topRightRect) - 18));
+    //NI_drawLabel(@"Sagittal", NSMakePoint(NSMinX(bottomLeftRect) + 6, NSMaxY(bottomLeftRect) - 18));
 
     [canvas unlockFocus];
     return canvas;

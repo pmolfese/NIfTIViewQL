@@ -57,7 +57,7 @@
     // Create image view
     self.imageView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, 400, 400)];
     self.imageView.imageScaling = NSImageScaleProportionallyUpOrDown;
-    self.imageView.imageAlignment = NSImageAlignCenter;
+    self.imageView.imageAlignment = NSImageAlignTop;
     
     self.scrollView.documentView = self.imageView;
 }
@@ -146,7 +146,7 @@
 - (void)displayNiftiPreview {
     if (!self.niftiImage) return;
     
-    // Use your existing renderTripleSliceImageWithSize method
+    // Use existing renderTripleSliceImageWithSize method
     NSSize imageSize = NSMakeSize(600, 400); // Adjust as needed
     NSImage *previewImage = [self.niftiImage renderTripleSliceImageWithSize:imageSize];
     
@@ -346,13 +346,15 @@
 
 - (void)viewDidLayout {
     [super viewDidLayout];
-    
     // Maintain split view proportions (70% image, 30% info)
     if (self.splitView.subviews.count == 2) {
         CGFloat totalWidth = self.splitView.bounds.size.width;
         CGFloat imageWidth = totalWidth * 0.7;
-        
         [self.splitView setPosition:imageWidth ofDividerAtIndex:0];
+    }
+    // Resize imageView to fill scrollView
+    if (self.scrollView && self.imageView) {
+        self.imageView.frame = self.scrollView.contentView.bounds;
     }
 }
 
