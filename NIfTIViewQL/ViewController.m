@@ -1,7 +1,10 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 #import "NiftiImage.h"
+#import "NiftiTripleSliceView.h"
+#import "NiftiSliceView.h"
 #import "ViewController.h"
+#import "nifti1_io.h"
 
 @interface ViewController ()
 // Example: IBOutlet for a label to display info (connect in Interface Builder)
@@ -12,6 +15,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    int znz = nifti_compiled_with_zlib();
+    NSLog(@"compiled with ZNZ: %d", znz);
     // Additional setup if needed
 }
 - (IBAction)openNIfTI:(id)sender {
@@ -31,6 +37,8 @@
                 NSString *dType = [[myImage datatype] stringValue];
                 NSLog(@"DataType %@", dType);
                 NSLog(@"Dimensions: %@ %@ %@", [myImage nx], [myImage ny], [myImage nz]);
+                
+                [self.tripleSliceView setNiftiImage:myImage];
                 
             }
             else {

@@ -10,6 +10,7 @@
 @interface ViewController : NSViewController
 
 @property (weak) IBOutlet NSButton *openButton;
+@property (weak) IBOutlet NiftiTripleSliceView *tripleSliceView;
 
 @end
 

@@ -6,7 +6,20 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		772E26F32E4AD29100FEB027 /* NIfTIQuickLook.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 772E26E12E4AD29100FEB027 /* NIfTIQuickLook.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		772E26FE2E4ADA1D00FEB027 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 772E26FD2E4ADA1D00FEB027 /* QuickLook.framework */; };
+		777256732E4B7A29009E5CC7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777256722E4B7A29009E5CC7 /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
+		772E26F12E4AD29100FEB027 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77683E072E4A3D13002FA11D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 772E26E02E4AD29100FEB027;
+			remoteInfo = NIfTIQuickLook;
+		};
 		77683E252E4A3D15002FA11D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 77683E072E4A3D13002FA11D /* Project object */;
@@ -23,15 +36,85 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		772E26F42E4AD29100FEB027 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				772E26F32E4AD29100FEB027 /* NIfTIQuickLook.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		772E26E12E4AD29100FEB027 /* NIfTIQuickLook.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NIfTIQuickLook.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		772E26E32E4AD29100FEB027 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		772E26FD2E4ADA1D00FEB027 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		77683E0F2E4A3D13002FA11D /* NIfTIViewQL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NIfTIViewQL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77683E242E4A3D15002FA11D /* NIfTIViewQLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NIfTIViewQLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77683E2E2E4A3D15002FA11D /* NIfTIViewQLUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NIfTIViewQLUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		777256722E4B7A29009E5CC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		772E26F72E4AD29100FEB027 /* Exceptions for "NIfTIQuickLook" folder in "NIfTIQuickLook" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 772E26E02E4AD29100FEB027 /* NIfTIQuickLook */;
+		};
+		772E26FA2E4AD4BA00FEB027 /* Exceptions for "NIfTIViewQL" folder in "NIfTIViewQL" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 77683E0E2E4A3D13002FA11D /* NIfTIViewQL */;
+		};
+		772E26FC2E4AD9F600FEB027 /* Exceptions for "NIfTIViewQL" folder in "NIfTIQuickLook" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				nifti_clib/libfslio.a,
+				nifti_clib/libnifticdf.a,
+				nifti_clib/libniftiio.a,
+				nifti_clib/libz.a,
+				nifti_clib/libznz.a,
+				NiftiImage.m,
+			);
+			target = 772E26E02E4AD29100FEB027 /* NIfTIQuickLook */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		777256762E4B7B45009E5CC7 /* Exceptions for "NIfTIQuickLook" folder in "Compile Sources" phase from "NIfTIQuickLook" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 772E26DD2E4AD29100FEB027 /* Sources */;
+			membershipExceptions = (
+				PreviewProvider.h,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		772E26E52E4AD29100FEB027 /* NIfTIQuickLook */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				772E26F72E4AD29100FEB027 /* Exceptions for "NIfTIQuickLook" folder in "NIfTIQuickLook" target */,
+				777256762E4B7B45009E5CC7 /* Exceptions for "NIfTIQuickLook" folder in "Compile Sources" phase from "NIfTIQuickLook" target */,
+			);
+			path = NIfTIQuickLook;
+			sourceTree = "<group>";
+		};
 		77683E112E4A3D13002FA11D /* NIfTIViewQL */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				772E26FA2E4AD4BA00FEB027 /* Exceptions for "NIfTIViewQL" folder in "NIfTIViewQL" target */,
+				772E26FC2E4AD9F600FEB027 /* Exceptions for "NIfTIViewQL" folder in "NIfTIQuickLook" target */,
+			);
 			path = NIfTIViewQL;
 			sourceTree = "<group>";
 		};
@@ -48,6 +131,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		772E26DE2E4AD29100FEB027 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				777256732E4B7A29009E5CC7 /* Cocoa.framework in Frameworks */,
+				772E26FE2E4ADA1D00FEB027 /* QuickLook.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77683E0C2E4A3D13002FA11D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -72,12 +164,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		772E26E22E4AD29100FEB027 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				777256722E4B7A29009E5CC7 /* Cocoa.framework */,
+				772E26FD2E4ADA1D00FEB027 /* QuickLook.framework */,
+				772E26E32E4AD29100FEB027 /* Quartz.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		77683E062E4A3D13002FA11D = {
 			isa = PBXGroup;
 			children = (
 				77683E112E4A3D13002FA11D /* NIfTIViewQL */,
 				77683E272E4A3D15002FA11D /* NIfTIViewQLTests */,
 				77683E312E4A3D15002FA11D /* NIfTIViewQLUITests */,
+				772E26E52E4AD29100FEB027 /* NIfTIQuickLook */,
+				772E26E22E4AD29100FEB027 /* Frameworks */,
 				77683E102E4A3D13002FA11D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +192,7 @@
 				77683E0F2E4A3D13002FA11D /* NIfTIViewQL.app */,
 				77683E242E4A3D15002FA11D /* NIfTIViewQLTests.xctest */,
 				77683E2E2E4A3D15002FA11D /* NIfTIViewQLUITests.xctest */,
+				772E26E12E4AD29100FEB027 /* NIfTIQuickLook.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +200,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		772E26E02E4AD29100FEB027 /* NIfTIQuickLook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 772E26F82E4AD29100FEB027 /* Build configuration list for PBXNativeTarget "NIfTIQuickLook" */;
+			buildPhases = (
+				772E26DD2E4AD29100FEB027 /* Sources */,
+				772E26DE2E4AD29100FEB027 /* Frameworks */,
+				772E26DF2E4AD29100FEB027 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				772E26E52E4AD29100FEB027 /* NIfTIQuickLook */,
+			);
+			name = NIfTIQuickLook;
+			packageProductDependencies = (
+			);
+			productName = NIfTIQuickLook;
+			productReference = 772E26E12E4AD29100FEB027 /* NIfTIQuickLook.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		77683E0E2E4A3D13002FA11D /* NIfTIViewQL */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 77683E382E4A3D15002FA11D /* Build configuration list for PBXNativeTarget "NIfTIViewQL" */;
@@ -102,10 +229,12 @@
 				77683E0B2E4A3D13002FA11D /* Sources */,
 				77683E0C2E4A3D13002FA11D /* Frameworks */,
 				77683E0D2E4A3D13002FA11D /* Resources */,
+				772E26F42E4AD29100FEB027 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				772E26F22E4AD29100FEB027 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				77683E112E4A3D13002FA11D /* NIfTIViewQL */,
@@ -172,6 +301,9 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					772E26E02E4AD29100FEB027 = {
+						CreatedOnToolsVersion = 16.4;
+					};
 					77683E0E2E4A3D13002FA11D = {
 						CreatedOnToolsVersion = 16.4;
 					};
@@ -202,11 +334,19 @@
 				77683E0E2E4A3D13002FA11D /* NIfTIViewQL */,
 				77683E232E4A3D15002FA11D /* NIfTIViewQLTests */,
 				77683E2D2E4A3D15002FA11D /* NIfTIViewQLUITests */,
+				772E26E02E4AD29100FEB027 /* NIfTIQuickLook */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		772E26DF2E4AD29100FEB027 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77683E0D2E4A3D13002FA11D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -231,6 +371,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		772E26DD2E4AD29100FEB027 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77683E0B2E4A3D13002FA11D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -255,6 +402,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		772E26F22E4AD29100FEB027 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 772E26E02E4AD29100FEB027 /* NIfTIQuickLook */;
+			targetProxy = 772E26F12E4AD29100FEB027 /* PBXContainerItemProxy */;
+		};
 		77683E262E4A3D15002FA11D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 77683E0E2E4A3D13002FA11D /* NIfTIViewQL */;
@@ -268,6 +420,68 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		772E26F52E4AD29100FEB027 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NIfTIQuickLook/NIfTIQuickLook.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = A52KP9JR6V;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NIfTIQuickLook/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NIfTIQuickLook;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NIfTIViewQL/nifti_clib",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.nih.nimh.cmn.NIfTIViewQL.NIfTIQuickLook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		772E26F62E4AD29100FEB027 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NIfTIQuickLook/NIfTIQuickLook.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = A52KP9JR6V;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NIfTIQuickLook/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NIfTIQuickLook;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NIfTIViewQL/nifti_clib",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.nih.nimh.cmn.NIfTIViewQL.NIfTIQuickLook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
 		77683E362E4A3D15002FA11D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -302,6 +516,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -314,6 +529,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = HAVE_ZLIB;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -368,6 +584,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -399,11 +616,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NIfTIViewQL/NIfTIViewQL.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = A52KP9JR6V;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "NIfTIViewQL/nifti_clib/**";
+				INFOPLIST_FILE = NIfTIViewQL/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -415,6 +636,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/NIfTIViewQL/nifti_clib",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-DHAVE_ZLIB";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.nih.nimh.cmn.NIfTIViewQL;
@@ -430,11 +652,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NIfTIViewQL/NIfTIViewQL.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = A52KP9JR6V;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "NIfTIViewQL/nifti_clib/**";
+				INFOPLIST_FILE = NIfTIViewQL/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -446,6 +672,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/NIfTIViewQL/nifti_clib",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-DHAVE_ZLIB";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.nih.nimh.cmn.NIfTIViewQL;
@@ -461,6 +688,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
@@ -477,6 +705,8 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = A52KP9JR6V;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
@@ -492,6 +722,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gov.nih.nimh.cmn.NIfTIViewQLUITests;
@@ -506,6 +737,8 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = A52KP9JR6V;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gov.nih.nimh.cmn.NIfTIViewQLUITests;
@@ -518,6 +751,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		772E26F82E4AD29100FEB027 /* Build configuration list for PBXNativeTarget "NIfTIQuickLook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				772E26F52E4AD29100FEB027 /* Debug */,
+				772E26F62E4AD29100FEB027 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		77683E0A2E4A3D13002FA11D /* Build configuration list for PBXProject "NIfTIViewQL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

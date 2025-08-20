@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.NiftiQLPreviewExtension</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>NiftiQLPreviewExtension</string>
+	<key>CFBundlePackageType</key>
+	<string>XPC!</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>gov.nih.nifti-1</string>
+			<key>UTTypeDescription</key>
+			<string>NIfTI Image</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>nii</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/x-nifti</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>gov.nih.nifti-1-gzip</string>
+			<key>UTTypeDescription</key>
+			<string>Compressed NIfTI Image</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>org.gnu.gnu-zip-archive</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>nii.gz</string>
+					<string>gz</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/x-nifti-gzip</string>
+			</dict>
+		</dict>
+	</array>
+
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>QLSupportedContentTypes</key>
+			<array>
+				<string>gov.nih.nifti-1</string>
+				<string>gov.nih.nifti-1-gzip</string>
+				<string>org.gnu.gnu-zip-archive</string>
+			</array>
+			<key>QLPreviewWidth</key>
+			<integer>800</integer>
+			<key>QLPreviewHeight</key>
+			<integer>600</integer>
+		</dict>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.quicklook.preview</string>
+		<key>NSExtensionPrincipalClass</key>
+		<string>PreviewViewController</string>
+	</dict>
+</dict>
+</plist>
