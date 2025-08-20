@@ -69,6 +69,7 @@
 			<array>
 				<string>gov.nih.nifti-1</string>
 				<string>gov.nih.nifti-1-gzip</string>
+				<string>org.gnu.gnu-zip-archive</string>
 			</array>
 			<key>QLPreviewWidth</key>
 			<integer>800</integer>

@@ -371,9 +371,9 @@ static void NI_drawLabel(NSString *text, NSPoint p) {
     NI_drawImageCentered(sagittalImg, sgR);
 
     // Labels
-    NI_drawLabel(@"Axial",    NSMakePoint(NSMinX(axR) + 6, NSMaxY(axR) - 18));
-    NI_drawLabel(@"Coronal",  NSMakePoint(NSMinX(coR) + 6, NSMaxY(coR) - 18));
-    NI_drawLabel(@"Sagittal", NSMakePoint(NSMinX(sgR) + 6, NSMaxY(sgR) - 18));
+    //NI_drawLabel(@"Axial",    NSMakePoint(NSMinX(axR) + 6, NSMaxY(axR) - 18));
+    //NI_drawLabel(@"Coronal",  NSMakePoint(NSMinX(coR) + 6, NSMaxY(coR) - 18));
+    //NI_drawLabel(@"Sagittal", NSMakePoint(NSMinX(sgR) + 6, NSMaxY(sgR) - 18));
 
     [canvas unlockFocus];
     return canvas;

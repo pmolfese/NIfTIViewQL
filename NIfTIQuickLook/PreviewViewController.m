@@ -90,6 +90,30 @@
 - (void)preparePreviewOfFileAtURL:(NSURL *)url completionHandler:(void (^)(NSError * _Nullable))handler {
     NSLog(@"preparePreviewOfFileAtURL: %@", url);
     
+    // Check if it's a NIfTI file (either .nii or .nii.gz)
+    NSString *pathExtension = [[url pathExtension] lowercaseString];
+    BOOL isNifti = NO;
+    
+    if ([pathExtension isEqualToString:@"nii"]) {
+        isNifti = YES;
+    } else if ([pathExtension isEqualToString:@"gz"]) {
+        // Check if it's a .nii.gz file
+        NSURL *urlWithoutGzExtension = [url URLByDeletingPathExtension];
+        NSString *innerExtension = [[urlWithoutGzExtension pathExtension] lowercaseString];
+        if ([innerExtension isEqualToString:@"nii"]) {
+            isNifti = YES;
+        }
+    }
+    
+    if (!isNifti) {
+        // Not a NIfTI file, let another extension handle it
+        NSError *error = [NSError errorWithDomain:@"PreviewError"
+                                             code:1
+                                         userInfo:@{NSLocalizedDescriptionKey: @"Not a NIfTI file"}];
+        handler(error);
+        return;
+    }
+    
     self.fileURL = url;
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -217,25 +241,9 @@
     
     [content appendString:@"\n"];
     
-    [content appendString:@"🎨 Preview Information:\n"];
-    [content appendString:@"   • Showing: Mid-slice views in three orientations\n"];
-    [content appendString:@"   • Axial: Horizontal cross-section (top-down view)\n"];
-    [content appendString:@"   • Coronal: Frontal cross-section (front-back view)\n"];
-    [content appendString:@"   • Sagittal: Side cross-section (left-right view)\n"];
-    [content appendString:@"   • Intensity: Auto-scaled to full dynamic range\n\n"];
-    
-    [content appendString:@"ℹ️  Usage Notes:\n"];
-    [content appendString:@"   • This is a quick preview for file identification\n"];
-    [content appendString:@"   • For detailed analysis, use specialized software:\n"];
-    [content appendString:@"     - FSLeyes, MRIcroGL, 3D Slicer (viewing)\n"];
-    [content appendString:@"     - FSL, SPM, AFNI, FreeSurfer (analysis)\n"];
-    [content appendString:@"   • Consider orientation and coordinate systems\n"];
-    [content appendString:@"   • Check header information for acquisition details\n\n"];
-    
     [content appendString:@"📚 Resources:\n"];
     [content appendString:@"   • NIfTI Format: https://nifti.nimh.nih.gov/\n"];
-    [content appendString:@"   • NITRC Tools: https://www.nitrc.org/\n"];
-    [content appendString:@"   • FSL Software: https://fsl.fmrib.ox.ac.uk/\n"];
+    [content appendString:@"   • AFNI: https://afni.nimh.nih.gov\n"];
     
     // Apply styling and set content
     dispatch_async(dispatch_get_main_queue(), ^{
