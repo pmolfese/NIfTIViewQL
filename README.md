@@ -4,9 +4,14 @@
 
 A quick and *very* messy Quick Look Preview Extension for macOS 15 and beyond.
 
-Early drafts were me trying to remember objective-c and decipher apple dev docs.
-Later drafts leaned on Github co-pilot and Claude.ai for trying to get it to work.
-At some point I'll attempt to clean up the code, but for now, it works. 
+Rough Development process:
+1. Link nifti_clib to xcode and run as command line
+2. Code GUI using Objective-C to open/read NIfTI files
+3. Create Quick Look Preview target in Xcode
+4. Fail at #3 multiple times due to macOS 15 API changes
+5. Turn to AI to try and Quick Look Preview to work
+6. Start sharing things on Github
+
 
 Pull requests welcome! 
 
@@ -15,11 +20,10 @@ To build:
 git clone https://github.com/pmolfese/NIfTIViewQL
 cd NIfTIViewQL
 xcodebuild -project NIfTIViewQL.xcodeproj -scheme NIfTIViewQuickLook -configuration Release -derivedDataPath ./output build
+ditto output/Build/Products/Release/NIfTIViewQL.app /Applications/NIfTIViewQL.app
+open /Applications/NIfTIViewQL.app
+#after inital open you may close the program (forever?)
 ```
-
-Copy the resulting NIfTIViewQL.app into your /Applications folder.
-
-Run the program once (it doesn't do much other than simple renders).
 
 Enjoy Quick Look Previews of NIfTI files! 
 
