@@ -216,12 +216,14 @@
         }
     }
     
+    [content appendFormat:@"   • qform_code: %@ (%@)\n", self.niftiImage.qformCode, self.niftiImage.qformCodeDescription];
+    [content appendFormat:@"   • sform_code: %@ (%@)\n", self.niftiImage.sformCode, self.niftiImage.sformCodeDescription];
+    
     // Calculate total voxels and estimated memory usage
     long long totalVoxels = (long long)[self.niftiImage.nx longLongValue] *
                            [self.niftiImage.ny longLongValue] *
                            [self.niftiImage.nz longLongValue] *
                            [self.niftiImage.nt longLongValue];
-    [content appendFormat:@"   • Total Voxels: %@\n", [NSNumberFormatter localizedStringFromNumber:@(totalVoxels) numberStyle:NSNumberFormatterDecimalStyle]];
     
     // Estimate memory usage based on data type
     int bytesPerVoxel = 1; // default
@@ -242,7 +244,7 @@
     [content appendString:@"\n"];
     
     [content appendString:@"📚 Resources:\n"];
-    [content appendString:@"   • NIfTI Format: https://nifti.nimh.nih.gov/\n"];
+    [content appendString:@"   • NIfTI Format: https://nifti.nimh.nih.gov\n"];
     [content appendString:@"   • AFNI: https://afni.nimh.nih.gov\n"];
     
     // Apply styling and set content

@@ -16,10 +16,17 @@ typedef NS_ENUM(NSUInteger, NiftiSliceOrientation) {
 @property (nonatomic, readonly) NSNumber *nz;
 @property (nonatomic, readonly) NSNumber *nt;
 
+// Add form_code properties
+@property (nonatomic, readonly) NSNumber *qformCode;
+@property (nonatomic, readonly) NSNumber *sformCode;
+
 - (instancetype)initWithFileAtPath:(NSString *)path;
 - (NSArray<NSArray<NSNumber *> *> *)sliceAtIndex:(NSInteger)index
                                      orientation:(NiftiSliceOrientation)orientation;
 - (NSString *)dataTypeDescription;
 - (NSImage * _Nullable)renderTripleSliceImageWithSize:(NSSize)size;
+
+- (NSString *)qformCodeDescription;
+- (NSString *)sformCodeDescription;
 
 @end

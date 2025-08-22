@@ -11,6 +11,8 @@
 @property (nonatomic, readwrite) NSNumber *ny;
 @property (nonatomic, readwrite) NSNumber *nz;
 @property (nonatomic, readwrite) NSNumber *nt;
+@property (nonatomic, readwrite) NSNumber *qformCode;
+@property (nonatomic, readwrite) NSNumber *sformCode;
 @end
 
 @implementation NiftiImage
@@ -37,6 +39,9 @@
         self.ny = @(_nim->ny);
         self.nz = @(_nim->nz);
         self.nt = @(_nim->nt);
+        
+        self.qformCode = @(_nim->qform_code);
+        self.sformCode = @(_nim->sform_code);
     }
     return self;
 }
@@ -404,6 +409,28 @@ static void NI_drawLabel(NSString *text, NSPoint p) {
 
     [canvas unlockFocus];
     return canvas;
+}
+
+- (NSString *)_formCodeDescription:(NSInteger)code {
+    switch (code) {
+        case 0: return @"Arbitrary";
+        case 1: return @"Scanner-based";
+        case 2: return @"Aligned";
+        case 3: return @"Talairach";
+        case 4: return @"MNI 152";
+        case 5: return @"Template/Other";
+        default: return @"Unknown";
+    }
+}
+
+- (NSString *)qformCodeDescription {
+    if (!self.qformCode) return @"(not set)";
+    return [self _formCodeDescription:self.qformCode.integerValue];
+}
+
+- (NSString *)sformCodeDescription {
+    if (!self.sformCode) return @"(not set)";
+    return [self _formCodeDescription:self.sformCode.integerValue];
 }
 
 @end
