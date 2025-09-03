@@ -2,7 +2,9 @@
 
 ![screenshot image](image002.png)
 
-A quick and *very* messy Quick Look Preview Extension for macOS 15 and beyond.
+A quick and *very* messy Quick Look Preview Extension for macOS 15 and beyond. 
+
+Currently *requires* you to have Xcode installed on your system.
 
 Rough Development process:
 1. Link nifti_clib to xcode and run as command line
