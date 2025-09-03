@@ -9,13 +9,19 @@ Rough Development process:
 2. Code GUI using Objective-C to open/read NIfTI files
 3. Create Quick Look Preview target in Xcode
 4. Fail at #3 multiple times due to macOS 15 API changes
-5. Turn to AI to try and Quick Look Preview to work
-6. Start sharing things on Github
+5. Turn to AI to for help, fail more times
+6. Eventually things start to work
+7. Start sharing things on Github
 
+New way to build with Makefile (handles dependencies):
+```
+git clone https://github.com/pmolfese/NIfTIViewQL
+cd NIfTIViewQL
+make all
+open /Applications/NIfTIViewQL.app
+```
 
-Pull requests welcome! 
-
-To build:
+Old way to build (required distributed copy of nifti_clib/zlib):
 ```
 git clone https://github.com/pmolfese/NIfTIViewQL
 cd NIfTIViewQL
