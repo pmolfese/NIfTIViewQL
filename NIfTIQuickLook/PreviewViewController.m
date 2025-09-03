@@ -57,7 +57,7 @@
     // Create image view
     self.imageView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, 400, 400)];
     self.imageView.imageScaling = NSImageScaleProportionallyUpOrDown;
-    self.imageView.imageAlignment = NSImageAlignTop;
+    self.imageView.imageAlignment = NSImageAlignCenter;
     
     self.scrollView.documentView = self.imageView;
 }
@@ -117,7 +117,6 @@
     self.fileURL = url;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self resetScrollPositions];
         [self loadNiftiImage];
     });
     
@@ -147,16 +146,28 @@
 - (void)resetScrollPositions {
     // Reset image scroll view to top-left
     if (self.scrollView && self.scrollView.contentView) {
-        [self.scrollView.contentView scrollToPoint:NSMakePoint(0, 0)];
-        [self.scrollView reflectScrolledClipView:self.scrollView.contentView];
+        NSClipView *clipView = self.scrollView.contentView;
+        
+        // Force scroll view to recalculate content size
+        [self.scrollView tile];
+        
+        // Simply scroll to origin (0,0) which represents top-left in the document view
+        [clipView scrollToPoint:NSMakePoint(0, 0)];
+        [self.scrollView reflectScrolledClipView:clipView];
+        
+        // Force immediate display update
+        [clipView setNeedsDisplay:YES];
     }
     
     // Reset info text view scroll to top
     if (self.infoTextView && self.infoTextView.enclosingScrollView) {
         NSScrollView *textScrollView = self.infoTextView.enclosingScrollView;
         if (textScrollView.contentView) {
-            [textScrollView.contentView scrollToPoint:NSMakePoint(0, 0)];
-            [textScrollView reflectScrolledClipView:textScrollView.contentView];
+            NSClipView *clipView = textScrollView.contentView;
+            [textScrollView tile];
+            [clipView scrollToPoint:NSMakePoint(0, 0)];
+            [textScrollView reflectScrolledClipView:clipView];
+            [clipView setNeedsDisplay:YES];
         }
     }
 }
@@ -175,6 +186,7 @@
             // Resize image view to fit the image
             NSSize imgSize = previewImage.size;
             self.imageView.frame = NSMakeRect(0, 0, imgSize.width, imgSize.height);
+            [self resetScrollPositions];
         });
     }
 }
@@ -372,10 +384,10 @@
         CGFloat imageWidth = totalWidth * 0.7;
         [self.splitView setPosition:imageWidth ofDividerAtIndex:0];
     }
-    // Resize imageView to fill scrollView
-    if (self.scrollView && self.imageView) {
-        self.imageView.frame = self.scrollView.contentView.bounds;
-    }
+    // Resize imageView to fill scrollView - was causing issues
+//    if (self.scrollView && self.imageView) {
+//        self.imageView.frame = self.scrollView.contentView.bounds;
+//    }
 }
 
 @end
