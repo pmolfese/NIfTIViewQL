@@ -23,16 +23,6 @@ make all
 open /Applications/NIfTIViewQL.app
 ```
 
-Old way to build (required distributed copy of nifti_clib/zlib):
-```
-git clone https://github.com/pmolfese/NIfTIViewQL
-cd NIfTIViewQL
-xcodebuild -project NIfTIViewQL.xcodeproj -scheme NIfTIViewQuickLook -configuration Release -derivedDataPath ./output build
-ditto output/Build/Products/Release/NIfTIViewQL.app /Applications/NIfTIViewQL.app
-open /Applications/NIfTIViewQL.app
-#after inital open you may close the program (forever?)
-```
-
 Enjoy Quick Look Previews of NIfTI files! 
 
 If you find this helpful, please give us a Star!
