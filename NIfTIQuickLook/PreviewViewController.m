@@ -117,6 +117,7 @@
     self.fileURL = url;
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self resetScrollPositions];
         [self loadNiftiImage];
     });
     
@@ -140,6 +141,23 @@
     } else {
         // Failed to load - show error info
         [self displayLoadError];
+    }
+}
+
+- (void)resetScrollPositions {
+    // Reset image scroll view to top-left
+    if (self.scrollView && self.scrollView.contentView) {
+        [self.scrollView.contentView scrollToPoint:NSMakePoint(0, 0)];
+        [self.scrollView reflectScrolledClipView:self.scrollView.contentView];
+    }
+    
+    // Reset info text view scroll to top
+    if (self.infoTextView && self.infoTextView.enclosingScrollView) {
+        NSScrollView *textScrollView = self.infoTextView.enclosingScrollView;
+        if (textScrollView.contentView) {
+            [textScrollView.contentView scrollToPoint:NSMakePoint(0, 0)];
+            [textScrollView reflectScrolledClipView:textScrollView.contentView];
+        }
     }
 }
 
