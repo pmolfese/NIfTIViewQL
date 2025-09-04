@@ -18,8 +18,6 @@
     self.view.layer.backgroundColor = [[NSColor windowBackgroundColor] CGColor];
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -323,14 +321,38 @@
     }
 }
 
+- (BOOL)isDarkMode {
+    if (@available(macOS 10.14, *)) {
+        NSAppearance *appearance = self.view.effectiveAppearance;
+        if (!appearance) {
+            appearance = [NSApp effectiveAppearance];
+        }
+        
+        NSAppearanceName name = [appearance bestMatchFromAppearancesWithNames:@[
+            NSAppearanceNameAqua,
+            NSAppearanceNameDarkAqua
+        ]];
+        
+        return [name isEqualToString:NSAppearanceNameDarkAqua];
+    }
+    return NO;
+}
+
 - (void)setStyledTextContent:(NSString *)content {
     // Apply styling
     NSMutableAttributedString *attributedContent = [[NSMutableAttributedString alloc] initWithString:content];
     NSRange fullRange = NSMakeRange(0, [content length]);
     
-    // Set default font
+    // Determine text colors based on appearance
+    BOOL isDark = [self isDarkMode];
+    NSColor *defaultTextColor = isDark ? [NSColor whiteColor] : [NSColor blackColor];
+    
+    // Set default font and text color
     [attributedContent addAttribute:NSFontAttributeName
                               value:[NSFont systemFontOfSize:11]
+                              range:fullRange];
+    [attributedContent addAttribute:NSForegroundColorAttributeName
+                              value:defaultTextColor
                               range:fullRange];
     
     // Style headers and sections
@@ -338,7 +360,14 @@
     NSUInteger currentLocation = 0;
     
     for (NSString *line in lines) {
-        NSRange lineRange = NSMakeRange(currentLocation, [line length]);
+        if (currentLocation >= [content length]) break;
+        
+        NSUInteger lineLength = [line length];
+        if (currentLocation + lineLength > [content length]) {
+            lineLength = [content length] - currentLocation;
+        }
+        
+        NSRange lineRange = NSMakeRange(currentLocation, lineLength);
         
         if ([line hasPrefix:@"🧠"] || [line hasPrefix:@"⚠️"]) {
             // Main title
@@ -364,16 +393,23 @@
                                       value:[NSColor tertiaryLabelColor]
                                       range:lineRange];
         } else if ([line hasPrefix:@"   •"]) {
-            // Bullet points
+            // Bullet points - explicitly set to default text color
             [attributedContent addAttribute:NSFontAttributeName
                                       value:[NSFont systemFontOfSize:11]
                                       range:lineRange];
+            [attributedContent addAttribute:NSForegroundColorAttributeName
+                                      value:defaultTextColor
+                                      range:lineRange];
         }
         
-        currentLocation += [line length] + 1; // +1 for newline
+        currentLocation += lineLength + 1; // +1 for newline
     }
     
+    // Set the styled content
     [self.infoTextView.textStorage setAttributedString:attributedContent];
+    
+    // Also set the text view's default color as backup
+    self.infoTextView.textColor = defaultTextColor;
 }
 
 - (void)viewDidLayout {
