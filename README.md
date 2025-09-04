@@ -30,7 +30,7 @@ New way to build with Makefile (handles dependencies):
 git clone https://github.com/pmolfese/NIfTIViewQL
 cd NIfTIViewQL
 make all
-open /Applications/NIfTIViewQL.app
+make install
 #Close the app (forever?) and Finder Quick Look (space) will work
 ```
 
