@@ -60,12 +60,13 @@ bridging-header:
 	@echo '#include "nifticdf.h"' >> $(BRIDGING_HEADER)
 
 xcodebuild:
-	xcodebuild -project $(XCODE_PROJECT) -scheme $(XCODE_SCHEME) -configuration $(XCODE_CONFIGURATION) -derivedDataPath $(DERIVED_DATA) build
-
+		xcodebuild -project $(XCODE_PROJECT) -scheme $(XCODE_SCHEME) -configuration $(XCODE_CONFIGURATION) -derivedDataPath $(DERIVED_DATA) build
+	
 app:
-	ditto $(DERIVED_DATA)/Build/Products/$(XCODE_CONFIGURATION)/$(PROJECT_NAME).app /Applications/$(PROJECT_NAME).app
+	@echo "App build is ready at $(DERIVED_DATA)/Build/Products/$(XCODE_CONFIGURATION)/$(PROJECT_NAME).app"
 
-install: app
+install:
+	ditto $(DERIVED_DATA)/Build/Products/$(XCODE_CONFIGURATION)/$(PROJECT_NAME).app /Applications/$(PROJECT_NAME).app
 	open /Applications/$(PROJECT_NAME).app
 
 clean:
