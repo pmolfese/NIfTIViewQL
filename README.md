@@ -36,7 +36,10 @@ make install
 
 If you receive an error related to Command Line Tools when you have Xcode installed,
 you may need to redirect the xcode-select:
-`sudo xcode-select -s /Applications/Xcode.app/Contents/Developer`
+```
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+xcode-select -p #should return: /Applications/Xcode.app/Contents/Developer
+```
 
 Enjoy Quick Look Previews of NIfTI files! Select any .nii or .nii.gz file
 press the <space> button and you should get a preview of the contents.
