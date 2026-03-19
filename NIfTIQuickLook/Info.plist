@@ -38,9 +38,9 @@
 				<string>application/x-nifti</string>
 			</dict>
 		</dict>
-		<dict>
-			<key>UTTypeIdentifier</key>
-			<string>gov.nih.nifti-1-gzip</string>
+			<dict>
+				<key>UTTypeIdentifier</key>
+				<string>gov.nih.nifti-1-gzip</string>
 			<key>UTTypeDescription</key>
 			<string>Compressed NIfTI Image</string>
 			<key>UTTypeConformsTo</key>
@@ -56,21 +56,64 @@
 					<string>gz</string>
 				</array>
 				<key>public.mime-type</key>
-				<string>application/x-nifti-gzip</string>
+					<string>application/x-nifti-gzip</string>
+				</dict>
 			</dict>
-		</dict>
-	</array>
+			<dict>
+				<key>UTTypeIdentifier</key>
+				<string>edu.harvard.mgh.mgh</string>
+				<key>UTTypeDescription</key>
+				<string>FreeSurfer MGH Volume</string>
+				<key>UTTypeConformsTo</key>
+				<array>
+					<string>public.data</string>
+				</array>
+				<key>UTTypeTagSpecification</key>
+				<dict>
+					<key>public.filename-extension</key>
+					<array>
+						<string>mgh</string>
+					</array>
+					<key>public.mime-type</key>
+					<string>application/octet-stream</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>UTTypeIdentifier</key>
+				<string>edu.harvard.mgh.mgz</string>
+				<key>UTTypeDescription</key>
+				<string>Compressed FreeSurfer MGH Volume</string>
+				<key>UTTypeConformsTo</key>
+				<array>
+					<string>edu.harvard.mgh.mgh</string>
+					<string>org.gnu.gnu-zip-archive</string>
+					<string>public.data</string>
+				</array>
+				<key>UTTypeTagSpecification</key>
+				<dict>
+					<key>public.filename-extension</key>
+					<array>
+						<string>mgz</string>
+						<string>mgh.gz</string>
+					</array>
+					<key>public.mime-type</key>
+					<string>application/gzip</string>
+				</dict>
+			</dict>
+		</array>
 
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>QLSupportedContentTypes</key>
-			<array>
-				<string>gov.nih.nifti-1</string>
-				<string>gov.nih.nifti-1-gzip</string>
-				<string>org.gnu.gnu-zip-archive</string>
-			</array>
+				<array>
+					<string>gov.nih.nifti-1</string>
+					<string>gov.nih.nifti-1-gzip</string>
+					<string>edu.harvard.mgh.mgh</string>
+					<string>edu.harvard.mgh.mgz</string>
+					<string>org.gnu.gnu-zip-archive</string>
+				</array>
 			<key>QLPreviewWidth</key>
 			<integer>800</integer>
 			<key>QLPreviewHeight</key>
