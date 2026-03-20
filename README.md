@@ -2,6 +2,12 @@
 
 ![screenshot image](image002.png)
 
+### Updates
+
+As of v1.1 (2026-03-20), you can now quicklook Freesurfer's MGH/MGZ files for volumes.
+
+---
+
 ### What
 
 A quick and *very* messy Quick Look Preview Extension for macOS 15 and beyond. 
