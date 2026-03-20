@@ -268,8 +268,9 @@
     [content appendString:@"\n"];
     
     [content appendString:@"📚 Resources:\n"];
-    [content appendString:@"   • NIfTI Format: https://nifti.nimh.nih.gov\n"];
-    [content appendString:@"   • FreeSurfer MGH: https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/MghFormat\n"];
+    [content appendString:@"   • NIfTI: https://nifti.nimh.nih.gov\n"];
+    [content appendString:@"   • AFNI: https://afni.nimh.nih.gov\n"];
+    [content appendString:@"   • FreeSurfer MGH: https://surfer.nmr.mgh.harvard.edu/fswiki\n"];
     
     // Apply styling and set content
     dispatch_async(dispatch_get_main_queue(), ^{
