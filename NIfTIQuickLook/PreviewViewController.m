@@ -12,6 +12,18 @@
 
 @implementation PreviewViewController
 
+- (BOOL)isSupportedVolumeURL:(NSURL *)url {
+    NSString *lowercasePath = url.path.lowercaseString;
+    if ([lowercasePath hasSuffix:@".nii"] || [lowercasePath hasSuffix:@".mgh"] || [lowercasePath hasSuffix:@".mgz"]) {
+        return YES;
+    }
+    if ([lowercasePath hasSuffix:@".gz"]) {
+        NSString *innerPath = [lowercasePath stringByDeletingPathExtension];
+        return [innerPath hasSuffix:@".nii"] || [innerPath hasSuffix:@".mgh"];
+    }
+    return NO;
+}
+
 - (void)loadView {
     self.view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 800, 600)];
     self.view.wantsLayer = YES;
@@ -87,27 +99,11 @@
 
 - (void)preparePreviewOfFileAtURL:(NSURL *)url completionHandler:(void (^)(NSError * _Nullable))handler {
     NSLog(@"preparePreviewOfFileAtURL: %@", url);
-    
-    // Check if it's a NIfTI file (either .nii or .nii.gz)
-    NSString *pathExtension = [[url pathExtension] lowercaseString];
-    BOOL isNifti = NO;
-    
-    if ([pathExtension isEqualToString:@"nii"]) {
-        isNifti = YES;
-    } else if ([pathExtension isEqualToString:@"gz"]) {
-        // Check if it's a .nii.gz file
-        NSURL *urlWithoutGzExtension = [url URLByDeletingPathExtension];
-        NSString *innerExtension = [[urlWithoutGzExtension pathExtension] lowercaseString];
-        if ([innerExtension isEqualToString:@"nii"]) {
-            isNifti = YES;
-        }
-    }
-    
-    if (!isNifti) {
-        // Not a NIfTI file, let another extension handle it
+
+    if (![self isSupportedVolumeURL:url]) {
         NSError *error = [NSError errorWithDomain:@"PreviewError"
                                              code:1
-                                         userInfo:@{NSLocalizedDescriptionKey: @"Not a NIfTI file"}];
+                                         userInfo:@{NSLocalizedDescriptionKey: @"Not a supported volume file"}];
         handler(error);
         return;
     }
@@ -207,13 +203,13 @@
     // Build detailed info string using your NiftiImage properties
     NSMutableString *content = [[NSMutableString alloc] init];
     
-    [content appendString:@"🧠 NIFTI FILE PREVIEW\n"];
-    [content appendString:@"===================\n\n"];
+    [content appendString:@"🧠 VOLUME FILE PREVIEW\n"];
+    [content appendString:@"====================\n\n"];
     
     [content appendFormat:@"📁 File Information:\n"];
     [content appendFormat:@"   • Name: %@\n", fileName];
     [content appendFormat:@"   • Size: %@\n", formattedSize];
-    [content appendFormat:@"   • Compression: %@\n", [filePath.lowercaseString hasSuffix:@".gz"] ? @"Gzip compressed" : @"Uncompressed"];
+    [content appendFormat:@"   • Compression: %@\n", ([filePath.lowercaseString hasSuffix:@".gz"] || [filePath.lowercaseString hasSuffix:@".mgz"]) ? @"Gzip compressed" : @"Uncompressed"];
     if (modificationDate) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateStyle = NSDateFormatterMediumStyle;
@@ -273,7 +269,7 @@
     
     [content appendString:@"📚 Resources:\n"];
     [content appendString:@"   • NIfTI Format: https://nifti.nimh.nih.gov\n"];
-    [content appendString:@"   • AFNI: https://afni.nimh.nih.gov\n"];
+    [content appendString:@"   • FreeSurfer MGH: https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/MghFormat\n"];
     
     // Apply styling and set content
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -285,15 +281,15 @@
     NSString *fileName = [self.fileURL lastPathComponent];
     
     NSMutableString *content = [[NSMutableString alloc] init];
-    [content appendString:@"⚠️ UNABLE TO LOAD NIFTI FILE\n"];
+    [content appendString:@"⚠️ UNABLE TO LOAD VOLUME FILE\n"];
     [content appendString:@"=============================\n\n"];
     
     [content appendFormat:@"File: %@\n\n", fileName];
     [content appendString:@"Possible issues:\n"];
     [content appendString:@"   • File may be corrupted or incomplete\n"];
-    [content appendString:@"   • Unsupported NIfTI variant or extension\n"];
+    [content appendString:@"   • Unsupported NIfTI or MGH variant\n"];
     [content appendString:@"   • File permissions or access issues\n"];
-    [content appendString:@"   • Not a valid NIfTI file despite extension\n\n"];
+    [content appendString:@"   • Not a valid NIfTI or MGH file despite extension\n\n"];
     
     [content appendString:@"Try:\n"];
     [content appendString:@"   • Opening with specialized NIfTI software\n"];

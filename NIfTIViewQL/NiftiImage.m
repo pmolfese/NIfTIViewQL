@@ -1,6 +1,293 @@
 #import "NiftiImage.h"
 #import "nifti1_io.h"
 #import <Cocoa/Cocoa.h>
+#import <CoreFoundation/CoreFoundation.h>
+#include <zlib.h>
+
+static const NSUInteger NI_MGHHeaderSize = 284;
+
+typedef NS_ENUM(int32_t, NIMGHDataType) {
+    NIMGHDataTypeUChar = 0,
+    NIMGHDataTypeInt32 = 1,
+    NIMGHDataTypeFloat32 = 3,
+    NIMGHDataTypeInt16 = 4
+};
+
+static BOOL NI_pathIsMGH(NSString *path) {
+    NSString *lowercasePath = path.lowercaseString;
+    if ([lowercasePath hasSuffix:@".mgh"] || [lowercasePath hasSuffix:@".mgz"]) {
+        return YES;
+    }
+    if ([lowercasePath hasSuffix:@".gz"]) {
+        NSString *innerPath = [lowercasePath stringByDeletingPathExtension];
+        return [innerPath hasSuffix:@".mgh"];
+    }
+    return NO;
+}
+
+static BOOL NI_mghPathIsCompressed(NSString *path) {
+    NSString *lowercasePath = path.lowercaseString;
+    return [lowercasePath hasSuffix:@".mgz"] || [lowercasePath hasSuffix:@".mgh.gz"];
+}
+
+static int32_t NI_readBigEndianInt32(const uint8_t *bytes) {
+    uint32_t raw = 0;
+    memcpy(&raw, bytes, sizeof(raw));
+    return (int32_t)CFSwapInt32BigToHost(raw);
+}
+
+static int16_t NI_readBigEndianInt16(const uint8_t *bytes) {
+    uint16_t raw = 0;
+    memcpy(&raw, bytes, sizeof(raw));
+    return (int16_t)CFSwapInt16BigToHost(raw);
+}
+
+static float NI_readBigEndianFloat32(const uint8_t *bytes) {
+    CFSwappedFloat32 raw = { 0 };
+    memcpy(&raw, bytes, sizeof(raw));
+    return CFConvertFloat32SwappedToHost(raw);
+}
+
+static NSData *NI_readGzipFile(NSString *path) {
+    gzFile file = gzopen(path.fileSystemRepresentation, "rb");
+    if (!file) {
+        return nil;
+    }
+
+    NSMutableData *data = [NSMutableData data];
+    uint8_t buffer[32768];
+    int bytesRead = 0;
+    while ((bytesRead = gzread(file, buffer, sizeof(buffer))) > 0) {
+        [data appendBytes:buffer length:(NSUInteger)bytesRead];
+    }
+
+    int gzError = Z_OK;
+    (void)gzerror(file, &gzError);
+    gzclose(file);
+
+    if (bytesRead < 0 || gzError != Z_OK) {
+        return nil;
+    }
+
+    return [data copy];
+}
+
+static int NI_niftiDatatypeForMGHType(int32_t mghType) {
+    switch (mghType) {
+        case NIMGHDataTypeUChar:
+            return DT_UINT8;
+        case NIMGHDataTypeInt16:
+            return DT_INT16;
+        case NIMGHDataTypeInt32:
+            return DT_INT32;
+        case NIMGHDataTypeFloat32:
+            return DT_FLOAT32;
+        default:
+            return DT_UNKNOWN;
+    }
+}
+
+static size_t NI_expectedVoxelBytes(size_t voxelCount, int datatype) {
+    int bytesPerVoxel = 0;
+    int swapSize = 0;
+    nifti_datatype_sizes(datatype, &bytesPerVoxel, &swapSize);
+    if (bytesPerVoxel <= 0) {
+        return 0;
+    }
+    return voxelCount * (size_t)bytesPerVoxel;
+}
+
+static void NI_swapMGHVoxelDataToHost(void *data, size_t voxelCount, int datatype) {
+    if (!data || voxelCount == 0) {
+        return;
+    }
+
+    switch (datatype) {
+        case DT_UINT8:
+            return;
+        case DT_INT16: {
+            uint16_t *values = data;
+            for (size_t idx = 0; idx < voxelCount; ++idx) {
+                values[idx] = CFSwapInt16BigToHost(values[idx]);
+            }
+            break;
+        }
+        case DT_INT32: {
+            uint32_t *values = data;
+            for (size_t idx = 0; idx < voxelCount; ++idx) {
+                values[idx] = CFSwapInt32BigToHost(values[idx]);
+            }
+            break;
+        }
+        case DT_FLOAT32: {
+            uint32_t *values = data;
+            for (size_t idx = 0; idx < voxelCount; ++idx) {
+                CFSwappedFloat32 swapped = { values[idx] };
+                float hostValue = CFConvertFloat32SwappedToHost(swapped);
+                memcpy(&values[idx], &hostValue, sizeof(hostValue));
+            }
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+static mat44 NI_mghScannerTransform(int width,
+                                    int height,
+                                    int depth,
+                                    float dx,
+                                    float dy,
+                                    float dz,
+                                    float x_r,
+                                    float x_a,
+                                    float x_s,
+                                    float y_r,
+                                    float y_a,
+                                    float y_s,
+                                    float z_r,
+                                    float z_a,
+                                    float z_s,
+                                    float c_r,
+                                    float c_a,
+                                    float c_s) {
+    mat44 transform = { 0 };
+
+    transform.m[0][0] = x_r * dx;
+    transform.m[0][1] = y_r * dy;
+    transform.m[0][2] = z_r * dz;
+    transform.m[1][0] = x_a * dx;
+    transform.m[1][1] = y_a * dy;
+    transform.m[1][2] = z_a * dz;
+    transform.m[2][0] = x_s * dx;
+    transform.m[2][1] = y_s * dy;
+    transform.m[2][2] = z_s * dz;
+    transform.m[3][3] = 1.0f;
+
+    float centerI = width / 2.0f;
+    float centerJ = height / 2.0f;
+    float centerK = depth / 2.0f;
+
+    transform.m[0][3] = c_r - (transform.m[0][0] * centerI + transform.m[0][1] * centerJ + transform.m[0][2] * centerK);
+    transform.m[1][3] = c_a - (transform.m[1][0] * centerI + transform.m[1][1] * centerJ + transform.m[1][2] * centerK);
+    transform.m[2][3] = c_s - (transform.m[2][0] * centerI + transform.m[2][1] * centerJ + transform.m[2][2] * centerK);
+
+    return transform;
+}
+
+static nifti_image *NI_readMGHImage(NSString *path) {
+    NSData *fileData = NI_mghPathIsCompressed(path) ? NI_readGzipFile(path) : [NSData dataWithContentsOfFile:path];
+    if (fileData.length < NI_MGHHeaderSize) {
+        return NULL;
+    }
+
+    const uint8_t *bytes = fileData.bytes;
+    int32_t version = NI_readBigEndianInt32(bytes + 0);
+    int32_t width = NI_readBigEndianInt32(bytes + 4);
+    int32_t height = NI_readBigEndianInt32(bytes + 8);
+    int32_t depth = NI_readBigEndianInt32(bytes + 12);
+    int32_t nframes = NI_readBigEndianInt32(bytes + 16);
+    int32_t mghType = NI_readBigEndianInt32(bytes + 20);
+    int16_t goodRASFlag = NI_readBigEndianInt16(bytes + 28);
+
+    if (version != 1 || width <= 0 || height <= 0 || depth <= 0 || nframes <= 0) {
+        return NULL;
+    }
+
+    int datatype = NI_niftiDatatypeForMGHType(mghType);
+    if (datatype == DT_UNKNOWN) {
+        NSLog(@"Unsupported MGH datatype %d at path %@", mghType, path);
+        return NULL;
+    }
+
+    size_t voxelCount = (size_t)width * (size_t)height * (size_t)depth * (size_t)nframes;
+    size_t expectedBytes = NI_expectedVoxelBytes(voxelCount, datatype);
+    if (expectedBytes == 0 || fileData.length < NI_MGHHeaderSize + expectedBytes) {
+        return NULL;
+    }
+
+    int ndim = 1;
+    if (height > 1) ndim = 2;
+    if (depth > 1) ndim = 3;
+    if (nframes > 1) ndim = 4;
+
+    int dims[8] = { ndim, width, height, depth, nframes, 1, 1, 1 };
+    nifti_image *nim = nifti_make_new_nim(dims, datatype, 0);
+    if (!nim) {
+        return NULL;
+    }
+
+    nim->data = malloc(expectedBytes);
+    if (!nim->data) {
+        nifti_image_free(nim);
+        return NULL;
+    }
+
+    memcpy(nim->data, bytes + NI_MGHHeaderSize, expectedBytes);
+    NI_swapMGHVoxelDataToHost(nim->data, voxelCount, datatype);
+
+    nim->fname = strdup(path.fileSystemRepresentation);
+    nim->iname = strdup(path.fileSystemRepresentation);
+    nim->byteorder = nifti_short_order();
+    nim->pixdim[0] = 1.0f;
+    nim->dx = 1.0f;
+    nim->dy = 1.0f;
+    nim->dz = 1.0f;
+    nim->dt = 1.0f;
+    nim->pixdim[4] = 1.0f;
+    nim->xyz_units = NIFTI_UNITS_MM;
+    nim->time_units = NIFTI_UNITS_UNKNOWN;
+    snprintf(nim->descrip, sizeof(nim->descrip), "%s", "Loaded from FreeSurfer MGH");
+
+    if (goodRASFlag) {
+        const NSUInteger rasOffset = 30 + 2;
+        float dx = NI_readBigEndianFloat32(bytes + rasOffset + 0);
+        float dy = NI_readBigEndianFloat32(bytes + rasOffset + 4);
+        float dz = NI_readBigEndianFloat32(bytes + rasOffset + 8);
+        float x_r = NI_readBigEndianFloat32(bytes + rasOffset + 12);
+        float x_a = NI_readBigEndianFloat32(bytes + rasOffset + 16);
+        float x_s = NI_readBigEndianFloat32(bytes + rasOffset + 20);
+        float y_r = NI_readBigEndianFloat32(bytes + rasOffset + 24);
+        float y_a = NI_readBigEndianFloat32(bytes + rasOffset + 28);
+        float y_s = NI_readBigEndianFloat32(bytes + rasOffset + 32);
+        float z_r = NI_readBigEndianFloat32(bytes + rasOffset + 36);
+        float z_a = NI_readBigEndianFloat32(bytes + rasOffset + 40);
+        float z_s = NI_readBigEndianFloat32(bytes + rasOffset + 44);
+        float c_r = NI_readBigEndianFloat32(bytes + rasOffset + 48);
+        float c_a = NI_readBigEndianFloat32(bytes + rasOffset + 52);
+        float c_s = NI_readBigEndianFloat32(bytes + rasOffset + 56);
+
+        nim->dx = dx;
+        nim->dy = dy;
+        nim->dz = dz;
+        nim->pixdim[1] = dx;
+        nim->pixdim[2] = dy;
+        nim->pixdim[3] = dz;
+
+        nim->sto_xyz = NI_mghScannerTransform(width, height, depth,
+                                              dx, dy, dz,
+                                              x_r, x_a, x_s,
+                                              y_r, y_a, y_s,
+                                              z_r, z_a, z_s,
+                                              c_r, c_a, c_s);
+        nim->sto_ijk = nifti_mat44_inverse(nim->sto_xyz);
+        nim->sform_code = NIFTI_XFORM_SCANNER_ANAT;
+
+        nim->qto_xyz = nim->sto_xyz;
+        nim->qto_ijk = nim->sto_ijk;
+        nim->qform_code = NIFTI_XFORM_SCANNER_ANAT;
+        nifti_mat44_to_quatern(nim->qto_xyz,
+                               &nim->quatern_b, &nim->quatern_c, &nim->quatern_d,
+                               &nim->qoffset_x, &nim->qoffset_y, &nim->qoffset_z,
+                               &nim->dx, &nim->dy, &nim->dz, &nim->qfac);
+        nim->pixdim[0] = nim->qfac;
+        nim->pixdim[1] = nim->dx;
+        nim->pixdim[2] = nim->dy;
+        nim->pixdim[3] = nim->dz;
+    }
+
+    return nim;
+}
 
 @interface NiftiImage ()
 @property (nonatomic) nifti_image *nim;
@@ -20,9 +307,13 @@
 - (instancetype)initWithFileAtPath:(NSString *)path {
     self = [super init];
     if (self) {
-        _nim = nifti_image_read([path fileSystemRepresentation], 1);
+        if (NI_pathIsMGH(path)) {
+            _nim = NI_readMGHImage(path);
+        } else {
+            _nim = nifti_image_read([path fileSystemRepresentation], 1);
+        }
         if (!_nim) {
-            NSLog(@"Failed to read NIfTI file at path: %@", path);
+            NSLog(@"Failed to read volume file at path: %@", path);
             return nil;
         }
         // Populate arrays for dimensions and pixel dimensions
@@ -234,6 +525,44 @@
                         for (int y = 0; y < ny; ++y) {
                             int idx = index + y * nx + z * nx * ny;
                             [row addObject:GET_VAL(idx, uint16_t)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+            }
+            break;
+        }
+        case DT_INT32: {
+            switch (orientation) {
+                case NiftiSliceOrientationAxial:
+                    if (index < 0 || index >= nz) return nil;
+                    for (int y = 0; y < ny; ++y) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int x = 0; x < nx; ++x) {
+                            int idx = x + y * nx + index * nx * ny;
+                            [row addObject:GET_VAL(idx, int32_t)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+                case NiftiSliceOrientationCoronal:
+                    if (index < 0 || index >= ny) return nil;
+                    for (int z = 0; z < nz; ++z) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int x = 0; x < nx; ++x) {
+                            int idx = x + index * nx + z * nx * ny;
+                            [row addObject:GET_VAL(idx, int32_t)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+                case NiftiSliceOrientationSagittal:
+                    if (index < 0 || index >= nx) return nil;
+                    for (int z = 0; z < nz; ++z) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int y = 0; y < ny; ++y) {
+                            int idx = index + y * nx + z * nx * ny;
+                            [row addObject:GET_VAL(idx, int32_t)];
                         }
                         [slice addObject:row];
                     }
