@@ -532,6 +532,44 @@ static nifti_image *NI_readMGHImage(NSString *path) {
             }
             break;
         }
+        case DT_INT32: {
+            switch (orientation) {
+                case NiftiSliceOrientationAxial:
+                    if (index < 0 || index >= nz) return nil;
+                    for (int y = 0; y < ny; ++y) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int x = 0; x < nx; ++x) {
+                            int idx = x + y * nx + index * nx * ny;
+                            [row addObject:GET_VAL(idx, int32_t)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+                case NiftiSliceOrientationCoronal:
+                    if (index < 0 || index >= ny) return nil;
+                    for (int z = 0; z < nz; ++z) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int x = 0; x < nx; ++x) {
+                            int idx = x + index * nx + z * nx * ny;
+                            [row addObject:GET_VAL(idx, int32_t)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+                case NiftiSliceOrientationSagittal:
+                    if (index < 0 || index >= nx) return nil;
+                    for (int z = 0; z < nz; ++z) {
+                        NSMutableArray *row = [NSMutableArray array];
+                        for (int y = 0; y < ny; ++y) {
+                            int idx = index + y * nx + z * nx * ny;
+                            [row addObject:GET_VAL(idx, int32_t)];
+                        }
+                        [slice addObject:row];
+                    }
+                    break;
+            }
+            break;
+        }
         case DT_INT16: {
             switch (orientation) {
                 case NiftiSliceOrientationAxial:
