@@ -1,0 +1,68 @@
+name: Track Clone Stats
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  track-clones:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Fetch clone stats
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api repos/${{ github.repository }}/traffic/clones > /tmp/clones.json
+
+      - name: Merge into historical record
+        run: |
+          python3 << 'EOF'
+          import json, os
+
+          with open('/tmp/clones.json') as f:
+              new_data = json.load(f)
+
+          stats_file = '.github/clone-stats.json'
+
+          if os.path.exists(stats_file):
+              with open(stats_file) as f:
+                  existing = json.load(f)
+          else:
+              existing = {"clones": []}
+
+          by_date = {e['timestamp']: e for e in existing['clones']}
+          for entry in new_data.get('clones', []):
+              by_date[entry['timestamp']] = entry
+
+          merged = sorted(by_date.values(), key=lambda x: x['timestamp'])
+          total = sum(e['count'] for e in merged)
+          total_unique = sum(e['uniques'] for e in merged)
+
+          result = {
+              "clones": merged,
+              "totals": {
+                  "count": total,
+                  "uniques": total_unique
+              }
+          }
+
+          with open(stats_file, 'w') as f:
+              json.dump(result, f, indent=2)
+
+          print(f"Records: {len(merged)}, Total clones: {total}, Total unique: {total_unique}")
+          EOF
+
+      - name: Commit updated stats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/clone-stats.json
+          git diff --staged --quiet || git commit -m "chore: update clone stats [skip ci]"
+          git push
