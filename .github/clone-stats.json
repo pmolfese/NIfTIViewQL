@@ -114,10 +114,20 @@
       "timestamp": "2026-06-10T00:00:00Z",
       "count": 3,
       "uniques": 3
+    },
+    {
+      "timestamp": "2026-06-11T00:00:00Z",
+      "count": 25,
+      "uniques": 12
+    },
+    {
+      "timestamp": "2026-06-12T00:00:00Z",
+      "count": 21,
+      "uniques": 12
     }
   ],
   "totals": {
-    "count": 144,
-    "uniques": 87
+    "count": 190,
+    "uniques": 111
   }
 }
