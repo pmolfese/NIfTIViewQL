@@ -209,10 +209,15 @@
       "timestamp": "2026-06-29T00:00:00Z",
       "count": 5,
       "uniques": 5
+    },
+    {
+      "timestamp": "2026-06-30T00:00:00Z",
+      "count": 11,
+      "uniques": 7
     }
   ],
   "totals": {
-    "count": 399,
-    "uniques": 230
+    "count": 410,
+    "uniques": 237
   }
 }
