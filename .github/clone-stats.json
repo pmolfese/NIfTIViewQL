@@ -264,10 +264,15 @@
       "timestamp": "2026-07-10T00:00:00Z",
       "count": 16,
       "uniques": 10
+    },
+    {
+      "timestamp": "2026-07-11T00:00:00Z",
+      "count": 21,
+      "uniques": 12
     }
   ],
   "totals": {
-    "count": 551,
-    "uniques": 329
+    "count": 572,
+    "uniques": 341
   }
 }
