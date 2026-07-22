@@ -309,10 +309,15 @@
       "timestamp": "2026-07-19T00:00:00Z",
       "count": 3,
       "uniques": 3
+    },
+    {
+      "timestamp": "2026-07-20T00:00:00Z",
+      "count": 19,
+      "uniques": 10
     }
   ],
   "totals": {
-    "count": 630,
-    "uniques": 384
+    "count": 649,
+    "uniques": 394
   }
 }
