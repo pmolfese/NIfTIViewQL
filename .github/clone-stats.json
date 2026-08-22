@@ -464,10 +464,15 @@
       "timestamp": "2026-08-19T00:00:00Z",
       "count": 8,
       "uniques": 5
+    },
+    {
+      "timestamp": "2026-08-20T00:00:00Z",
+      "count": 8,
+      "uniques": 3
     }
   ],
   "totals": {
-    "count": 862,
-    "uniques": 549
+    "count": 870,
+    "uniques": 552
   }
 }
