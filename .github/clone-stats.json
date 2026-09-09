@@ -549,10 +549,20 @@
       "timestamp": "2026-09-05T00:00:00Z",
       "count": 12,
       "uniques": 7
+    },
+    {
+      "timestamp": "2026-09-06T00:00:00Z",
+      "count": 5,
+      "uniques": 3
+    },
+    {
+      "timestamp": "2026-09-07T00:00:00Z",
+      "count": 9,
+      "uniques": 7
     }
   ],
   "totals": {
-    "count": 963,
-    "uniques": 618
+    "count": 977,
+    "uniques": 628
   }
 }
