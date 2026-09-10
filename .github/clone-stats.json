@@ -559,10 +559,15 @@
       "timestamp": "2026-09-07T00:00:00Z",
       "count": 9,
       "uniques": 7
+    },
+    {
+      "timestamp": "2026-09-08T00:00:00Z",
+      "count": 5,
+      "uniques": 5
     }
   ],
   "totals": {
-    "count": 977,
-    "uniques": 628
+    "count": 982,
+    "uniques": 633
   }
 }
