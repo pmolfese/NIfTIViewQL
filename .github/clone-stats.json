@@ -604,10 +604,15 @@
       "timestamp": "2026-09-16T00:00:00Z",
       "count": 22,
       "uniques": 14
+    },
+    {
+      "timestamp": "2026-09-17T00:00:00Z",
+      "count": 7,
+      "uniques": 5
     }
   ],
   "totals": {
-    "count": 1048,
-    "uniques": 677
+    "count": 1055,
+    "uniques": 682
   }
 }
