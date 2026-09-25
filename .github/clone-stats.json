@@ -634,10 +634,15 @@
       "timestamp": "2026-09-22T00:00:00Z",
       "count": 5,
       "uniques": 3
+    },
+    {
+      "timestamp": "2026-09-23T00:00:00Z",
+      "count": 16,
+      "uniques": 10
     }
   ],
   "totals": {
-    "count": 1104,
-    "uniques": 712
+    "count": 1120,
+    "uniques": 722
   }
 }
