@@ -689,10 +689,15 @@
       "timestamp": "2026-10-03T00:00:00Z",
       "count": 13,
       "uniques": 6
+    },
+    {
+      "timestamp": "2026-10-04T00:00:00Z",
+      "count": 7,
+      "uniques": 4
     }
   ],
   "totals": {
-    "count": 1207,
-    "uniques": 780
+    "count": 1214,
+    "uniques": 784
   }
 }
