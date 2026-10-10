@@ -709,10 +709,15 @@
       "timestamp": "2026-10-07T00:00:00Z",
       "count": 18,
       "uniques": 10
+    },
+    {
+      "timestamp": "2026-10-08T00:00:00Z",
+      "count": 18,
+      "uniques": 12
     }
   ],
   "totals": {
-    "count": 1243,
-    "uniques": 801
+    "count": 1261,
+    "uniques": 813
   }
 }
