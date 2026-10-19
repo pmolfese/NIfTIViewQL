@@ -754,10 +754,15 @@
       "timestamp": "2026-10-16T00:00:00Z",
       "count": 5,
       "uniques": 3
+    },
+    {
+      "timestamp": "2026-10-17T00:00:00Z",
+      "count": 17,
+      "uniques": 9
     }
   ],
   "totals": {
-    "count": 1333,
-    "uniques": 859
+    "count": 1350,
+    "uniques": 868
   }
 }
