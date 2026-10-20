@@ -759,10 +759,15 @@
       "timestamp": "2026-10-17T00:00:00Z",
       "count": 17,
       "uniques": 9
+    },
+    {
+      "timestamp": "2026-10-18T00:00:00Z",
+      "count": 8,
+      "uniques": 6
     }
   ],
   "totals": {
-    "count": 1350,
-    "uniques": 868
+    "count": 1358,
+    "uniques": 874
   }
 }
