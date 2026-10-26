@@ -789,10 +789,15 @@
       "timestamp": "2026-10-23T00:00:00Z",
       "count": 11,
       "uniques": 8
+    },
+    {
+      "timestamp": "2026-10-24T00:00:00Z",
+      "count": 19,
+      "uniques": 10
     }
   ],
   "totals": {
-    "count": 1388,
-    "uniques": 893
+    "count": 1407,
+    "uniques": 903
   }
 }
