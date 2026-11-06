@@ -844,10 +844,15 @@
       "timestamp": "2026-11-03T00:00:00Z",
       "count": 17,
       "uniques": 9
+    },
+    {
+      "timestamp": "2026-11-04T00:00:00Z",
+      "count": 4,
+      "uniques": 2
     }
   ],
   "totals": {
-    "count": 1530,
-    "uniques": 973
+    "count": 1534,
+    "uniques": 975
   }
 }
