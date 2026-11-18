@@ -899,10 +899,20 @@
       "timestamp": "2026-11-14T00:00:00Z",
       "count": 3,
       "uniques": 3
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00Z",
+      "count": 13,
+      "uniques": 9
+    },
+    {
+      "timestamp": "2026-11-16T00:00:00Z",
+      "count": 2,
+      "uniques": 2
     }
   ],
   "totals": {
-    "count": 1626,
-    "uniques": 1033
+    "count": 1641,
+    "uniques": 1044
   }
 }
