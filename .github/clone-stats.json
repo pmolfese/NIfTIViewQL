@@ -924,10 +924,15 @@
       "timestamp": "2026-11-19T00:00:00Z",
       "count": 4,
       "uniques": 4
+    },
+    {
+      "timestamp": "2026-11-20T00:00:00Z",
+      "count": 4,
+      "uniques": 2
     }
   ],
   "totals": {
-    "count": 1648,
-    "uniques": 1051
+    "count": 1652,
+    "uniques": 1053
   }
 }
